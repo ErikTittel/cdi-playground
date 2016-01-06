@@ -1,4 +1,4 @@
-package de.et.complete;
+package com.cdi.tutorial;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -8,32 +8,33 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
 @RunWith(Arquillian.class)
-public class ObjectiveTest {
+public class TranslatorTest {
 
-    @Inject
-    private ObjectiveService service;
+    @Inject @RealTranslator
+    private Translator translator;
 
     @Deployment
     public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackages(true, "de.et.complete")
+        JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class)
+                .addPackages(true, "com.cdi.tutorial")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        System.out.println(javaArchive.toString(true));
+        return javaArchive;
+
     }
 
     @Test
-    public void addObjective() {
-        String objective = "read a book";
+    public void translate() {
+        String text = "Hey\nthere.";
 
-        service.addObjective(objective);
+        String result = translator.translate(text);
 
-        String result = service.getObjective();
-        assertThat(result, is("read a book"));
+        assertThat(result, is("HeyTthere.T"));
     }
 }
