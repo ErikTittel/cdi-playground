@@ -13,15 +13,15 @@ import javax.inject.Inject;
 public class ObjectiveTest {
 
     @Inject
-    private ObjectiveService serivce;
+    private ObjectiveService service;
 
     @Test
     public void addObjective() {
         String objective = "read a book";
 
-        serivce.addObjective(objective);
+        service.addObjective(objective);
 
-        String result = serivce.getObjective();
+        String result = service.getObjective();
         assertThat(result, is("read a book"));
     }
 }
