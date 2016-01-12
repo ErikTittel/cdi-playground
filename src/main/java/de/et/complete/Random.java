@@ -1,4 +1,4 @@
-package com.cdi.tutorial;
+package de.et.complete;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
@@ -11,10 +11,7 @@ import java.lang.annotation.Target;
 
 import javax.inject.Qualifier;
 
-/**
- * @author Erik
- */
 @Qualifier
 @Retention(RUNTIME)
 @Target({METHOD, FIELD, PARAMETER, TYPE})
-public @interface RealTranslator {}
+public @interface Random {}

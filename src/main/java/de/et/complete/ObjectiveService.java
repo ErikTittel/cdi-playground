@@ -1,17 +1,11 @@
 package de.et.complete;
 
-import javax.inject.Singleton;
+/**
+ * @author Erik
+ */
+public interface ObjectiveService {
 
-@Singleton
-public class ObjectiveService {
+    void addObjective(String objective);
 
-    private String objective;
-
-    public void addObjective(String objective) {
-        this.objective = objective;
-    }
-
-    public String getObjective() {
-        return objective;
-    }
+    String getObjective();
 }
